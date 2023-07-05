@@ -22,7 +22,7 @@ int main() {
     return(0);
   }
 
-	for (i = 0; i < 2; i++) {
+	for (int i = 0; i < 2; i++) {
 		// Enviar comandos al Arduino
 		printf("Ingrese un comando ('E' para encender, 'A' para apagar): ");
 		scanf("%s", comando);
