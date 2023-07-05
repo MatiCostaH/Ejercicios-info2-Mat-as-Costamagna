@@ -4,9 +4,10 @@
 
 File archTiempo;
 
-typedef struct              // declaración de la estructura
+typedef struct              // declaración de la estructura poner los valores al inicio del setup.
 {
     char ident_tipo;
+    char relleno;
     int dato;
     unsigned long intervalo;
     
@@ -16,6 +17,7 @@ Sensores temperatura;       // uso de la misma
 
 void setup() {  
 temperatura.ident_tipo= 'A'; // asociaremos A a los sensores de temperatura así podremos usar B para humedad, C para movimiento, etc.
+temperatura.relleno = 'p';
 const int chipSelect = 4;
  Serial.begin(9600);                         // inicialización del puerto serie y muestra del tamaño ocupado
  Serial.print("el tamaño ocupado es de:");
@@ -30,7 +32,7 @@ Serial.println(static_cast<int>(sizeof(temperatura)));
   }
   Serial.println("initialization done.");
 
-   archTiempo = SD.open("test.txt", FILE_WRITE);
+   archTiempo = SD.open("test.dat", FILE_WRITE);
 
  if (archTiempo) {
     Serial.print("Writing to test.txt...");
