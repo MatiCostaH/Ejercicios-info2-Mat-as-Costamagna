@@ -3,24 +3,25 @@
 class Motores {
 private:
     int pinesMotor[4];          // Array para los pines
-    float delayEntrePasos;
+    int delayEntrePasos;
 
 public:
-    Motores(int pins[], float delaySteps);
-    void Bobina();
-    void medio_paso();
+    Motores(int pins[], int delaySteps);
+    void Bobina(int pasos);
+    void medio_paso(int paso);
 };
 
-Motores::Motores(int pins[], float delaySteps) {
+Motores::Motores(int pins[], int delaySteps) {
     for (int i = 0; i < 4; i++) {
         pinesMotor[i] = pins[i];
         pinMode(pinesMotor[i], OUTPUT);
     }
     delayEntrePasos = delaySteps;
+    
 }
 
 int pinesMotor[] = {5, 6, 7, 8};  // Pines del motor
-float retardoEntrePasos = 15.0;    // Retardo entre pasos
+int retardoEntrePasos = 20;    // Retardo entre pasos
 
 Motores motor(pinesMotor, retardoEntrePasos);
 
@@ -29,15 +30,15 @@ void setup() {
 }
 
 void loop() {
-    motor.Bobina();   // Realiza la secuencia de bobina en bobina con retardos de 1 segundo
-    delay(1000);
-    motor.medio_paso();
-    delay(1000);
+    motor.Bobina(int pasos);   // Realiza la secuencia de bobina en bobina con retardos de 2,5 segundos
+    delay(2500);
+    motor.medio_paso(int paso);
+    delay(2500);
 }
 
-void Motores::Bobina() {
-    // Secuencia de bobina en bobina
-    for (int i = 0; i < 5; i++) {
+void Motores::Bobina(int pasos) {
+    pasos= 1000;
+    for (int i = 0; i < pasos; i++) {
         digitalWrite(pinesMotor[0], HIGH);
         delay(delayEntrePasos);
         digitalWrite(pinesMotor[0], LOW);
@@ -56,9 +57,9 @@ void Motores::Bobina() {
     }
 }
 
-void Motores::medio_paso() {
-    // Secuencia de medio paso
-    for (int i = 0; i < 5; i++) {
+void Motores::medio_paso(int paso) {
+    paso = 2000;
+    for (int i = 0; i < Motores.cantidadPasos ; i++) {
         digitalWrite(pinesMotor[0], HIGH);
         delay(delayEntrePasos);
         digitalWrite(pinesMotor[1], HIGH);
